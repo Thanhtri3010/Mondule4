@@ -1,12 +1,12 @@
-com/example/repository/IDictionaryRepository.java
- com.example.repository.IDictionaryRepository
-com/example/controller/DictionaryController.java
- com.example.controller.DictionaryController
 com/example/service/IDictionaryService.java
  com.example.service.IDictionaryService
-com/example/service/impl/DictionaryService.java
- com.example.service.impl.DictionaryService
 com/example/config/CharsetFilter.java
  com.example.config.CharsetFilter
 com/example/repository/impl/DictionaryRepository.java
  com.example.repository.impl.DictionaryRepository
+com/example/controller/DictionaryController.java
+ com.example.controller.DictionaryController
+com/example/service/impl/DictionaryService.java
+ com.example.service.impl.DictionaryService
+com/example/repository/IDictionaryRepository.java
+ com.example.repository.IDictionaryRepository

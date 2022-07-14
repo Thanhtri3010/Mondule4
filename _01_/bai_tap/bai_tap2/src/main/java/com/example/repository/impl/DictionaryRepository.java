@@ -19,11 +19,7 @@ public class DictionaryRepository implements IDictionaryRepository {
     }
 
     @Override
-    public String translate(String word) {
-        String result = dictionary.get(word);
-        if (result == null) {
-            result = "Not found this word in the dictionary";
-        }
-        return result;
+    public Map<String, String> translate() {
+        return dictionary;
     }
 }

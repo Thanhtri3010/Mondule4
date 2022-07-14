@@ -12,6 +12,10 @@ public class DictionaryService implements IDictionaryService {
 
     @Override
     public String translate(String word) {
-        return dictionaryRepository.translate(word);
+        String result = dictionaryRepository.translate().get(word);
+        if (result == null) {
+            result = "Not found this word in the dictionary";
+        }
+        return result;
     }
 }
