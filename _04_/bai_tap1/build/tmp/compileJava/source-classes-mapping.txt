@@ -1,0 +1,12 @@
+com.example/repository/impl/EmailRepository.java
+ com.example.repository.impl.EmailRepository
+com.example/modle/Email.java
+ com.example.modle.Email
+com.example/service/impl/EmailService.java
+ com.example.service.impl.EmailService
+com.example/repository/IEmailRepository.java
+ com.example.repository.IEmailRepository
+com.example/service/IEmailService.java
+ com.example.service.IEmailService
+com.example/controller/EmailController.java
+ com.example.controller.EmailController
