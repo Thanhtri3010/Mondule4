@@ -29,7 +29,7 @@ public class PersonController {
     public ModelAndView getFormCreate() {
         ModelAndView modelAndView = new ModelAndView("create");
         modelAndView.addObject("person",new Person());
-        modelAndView.addObject("yearOfBrith",personService.getYearOfBirth());
+        modelAndView.addObject("yearOfBirth",personService.getYearOfBirth());
         modelAndView.addObject("gender",personService.getGender());
         modelAndView.addObject("nationality",personService.getNationality());
         modelAndView.addObject("travelInformation",personService.getTravelInformation());
@@ -49,6 +49,7 @@ public class PersonController {
     public String create(@ModelAttribute("person") Person person, RedirectAttributes redirectAttributes) {
         personService.save(person);
         redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
-        return "redirect:/display";
+        return "redirect:/list";
     }
+
 }

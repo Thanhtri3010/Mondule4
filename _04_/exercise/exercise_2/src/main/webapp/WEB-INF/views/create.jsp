@@ -28,7 +28,7 @@
         <form:input path="name" required="true"/>
     </div>
     <div><label>Năm sinh</label>
-        <form:select path="yearOfBrith" items="${yearOfBirth}" required="true"/>
+        <form:select path="yearOfBirth" items="${yearOfBirth}" required="true"/>
         <label>Giới tính</label>
         <form:select path="gender" items="${gender}" required="true"/>
         <label>Quốc tịch</label>
@@ -44,19 +44,19 @@
         <form:radiobuttons path="travelInformation" items="${travelInformation}"/>
     </div>
     <div><label>Số hiệu phương tiện</label>
-        <form:input path="signalPlate"/>
+        <form:input path="vehicleNumber"/>
         <label>Số ghế</label>
-        <form:input path="seatNumber"/>
+        <form:input path="seats"/>
     </div>
     <div>
         <label>Ngày khởi hành</label>
-        <form:select path="startDay" items="${day}"/>
-        <form:select path="startMonth" items="${month}"/>
-        <form:select path="startYear" items="${year}"/>
+        <form:select path="starDay" items="${startDay}"/>
+        <form:select path="starMonth" items="${startMonth}"/>
+        <form:select path="starYear" items="${startYear}"/>
         <label>Ngày kết thúc</label>
-        <form:select path="endDay" items="${day}"/>
-        <form:select path="endMonth" items="${month}"/>
-        <form:select path="endYear" items="${year}"/>
+        <form:select path="endDay" items="${endDay}"/>
+        <form:select path="endMonth" items="${endMonth}"/>
+        <form:select path="endYear" items="${endYear}"/>
     </div>
     <label>Trong vòng 14 ngày qua, anh/chị có đến tỉnh/thành phố nào?</label>
     <form:textarea path="note"/>

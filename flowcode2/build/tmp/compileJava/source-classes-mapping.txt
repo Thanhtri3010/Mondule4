@@ -1,0 +1,12 @@
+com.example/service/IMedicalDeclarationService.java
+ com.example.service.IMedicalDeclarationService
+com.example/repository/IMedicalDeclarationRepository.java
+ com.example.repository.IMedicalDeclarationRepository
+com.example/model/MedicalDeclaration.java
+ com.example.model.MedicalDeclaration
+com.example/service/MedicalDeclarationService.java
+ com.example.service.MedicalDeclarationService
+com.example/repository/MedicalDeclarationRepository.java
+ com.example.repository.MedicalDeclarationRepository
+com.example/controller/MedicalDeclarationController.java
+ com.example.controller.MedicalDeclarationController
