@@ -1,0 +1,12 @@
+com/example/model/Product.java
+ com.example.model.Product
+com/example/service/IProductService.java
+ com.example.service.IProductService
+com/example/repository/IProductRepository.java
+ com.example.repository.IProductRepository
+com/example/service/impl/ProductService.java
+ com.example.service.impl.ProductService
+com/example/repository/impl/ProductRepository.java
+ com.example.repository.impl.ProductRepository
+com/example/controller/ProductController.java
+ com.example.controller.ProductController

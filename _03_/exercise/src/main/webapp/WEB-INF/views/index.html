@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout :: head">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"\
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <h3>Product</h3>
@@ -21,7 +24,7 @@
         <input type="submit" value="Search">
     </form>
 </div>
-<table id = "products">
+<table id = "products" class="table table-hover">
     <thead>
     <tr>
         <th>ID</th>
@@ -42,11 +45,36 @@
         <td th:text="${row.getProductDescription()}"></td>
         <td th:text="${row.getProducer()}"></td>
         <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">edit</a></td>
-        <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:data-bs-target="'#staticBackdrop' + ${row.id}">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="staticBackdrop + ${row.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want delete product <span class="text-info" th:text="${row.productName}"></span> with id = <span class="text-info" th:text="${row.id}"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/product/delete(id=${row.id})}" class="btn btn-outline-success">Delete</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
         <td><a th:href="@{/product/{id}/view(id=${row.getId()})}">view</a></td>
     </tr>
     </tbody>
 </table>
-<footer th:replace="/layout :: footer"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

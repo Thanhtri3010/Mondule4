@@ -34,7 +34,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void remove(int id) {
-        remove(id);
+        iProductRepository.remove(id);
     }
 
     @Override

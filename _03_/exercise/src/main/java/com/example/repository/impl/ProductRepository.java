@@ -18,6 +18,9 @@ public class ProductRepository implements IProductRepository {
         products = new HashMap<>();
         products.put(1, new Product(1, "Iphone 11", "1100", "Mới", "Apple"));
         products.put(2, new Product(2, "S22UlTra", "1200", " Cũ", "SamSung"));
+        products.put(3, new Product(3, "S22UlTra", "1200", " Cũ", "SamSung"));
+        products.put(4, new Product(4, "S22UlTra", "1200", " Cũ", "SamSung"));
+        products.put(5, new Product(5, "S22UlTra", "1200", " Cũ", "SamSung"));
     }
 
     @Override

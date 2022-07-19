@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.model.Product;
 import com.example.service.IProductService;
-import com.example.service.impl.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,16 +48,16 @@ public class ProductController {
         return "redirect:/product";
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable int id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "/delete";
-    }
+//    @GetMapping("/{id}/delete")
+//    public String delete(@PathVariable int id, Model model) {
+//        model.addAttribute("product", productService.findById(id));
+//        return "/delete";
+//    }
 
-    @PostMapping("/delete")
-    public String delete(Product product, RedirectAttributes redirect) {
-        productService.remove(product.getId());
-        redirect.addFlashAttribute("success", "Removed customer successfully!");
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id, RedirectAttributes redirect) {
+        productService.remove(id);
+        redirect.addFlashAttribute("success", "Delete successfully!");
         return "redirect:/product";
     }
 
@@ -68,10 +67,10 @@ public class ProductController {
         return "/view";
     }
 
-    @PostMapping("search")
+    @PostMapping("/search")
     public String search(@RequestParam String name, Model model) {
         List<Product> products = productService.searchProduct(name);
-        model.addAttribute("products", products);
+        model.addAttribute("productList", products);
         return "/index";
     }
 }
