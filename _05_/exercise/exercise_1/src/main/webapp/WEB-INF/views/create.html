@@ -14,7 +14,7 @@
 <form action="create" method="post" th:object="${music}">
     <div>
         <label>ID</label>
-        <input class="form-control" type="text" th:field="*{id}"/>
+        <input class="form-control" type="text" th:field="*{id}" readonly/>
     </div>
     <div>
         <label>Name</label>
