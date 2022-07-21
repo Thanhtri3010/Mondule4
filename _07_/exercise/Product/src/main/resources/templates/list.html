@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song list</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<h2 class="text-">Danh Sách Sản Phẩm</h2>
+<p>
+    <a th:href="@{/create}">
+        Thêm mới
+    </a>
+</p>
+<body>
+<div>
+    <form th:action="@{/search}" method="POST" novalidate="novalidate">
+        <label>Search</label>
+        <input type="text" name="name">
+        <input type="submit" value="Search">
+    </form>
+</div>
+<table class="table table-bordered border-primary">
+    <tr>
+        <th>ID</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Giá</th>
+        <th>Mô tả sản phẩm</th>
+        <th>Nhà sản xuất</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+    <tr th:each="product : ${productList}">
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getProductName()}"></td>
+        <td th:text="${product.getProductPrice()}"></td>
+        <td th:text="${product.getProductDescription()}"></td>
+        <td th:text="${product.getProducer()}"></td>
+        <td><a th:href="@{/edit/{id}(id=${product.getId()})}">edit</a></td>
+        <td>  <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    th:data-bs-target="'#staticBackdrop' + ${product.id}">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="staticBackdrop + ${product.id}" data-bs-backdrop="static"
+                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want delete product <span class="text-info" th:text="${product.productName}"></span>
+                            with
+                            id = <span class="text-info" th:text="${product.id}"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/delete(id=${product.id})}" class="btn btn-outline-success">Delete</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{''(page=${productList.number - 1})}" th:if="${productList.hasPrevious()}">Previous</a>
+    <span th:text="${productList.number + 1}"></span>/<span th:text="${productList.totalPages}"></span>
+    <a th:href="@{''(page=${productList.number + 1})}" th:if="${productList.hasNext()}">Next</a>
+</div>
+</body>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</html>
