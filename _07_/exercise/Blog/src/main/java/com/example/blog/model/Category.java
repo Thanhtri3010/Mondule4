@@ -10,7 +10,7 @@ public class Category {
     private int categoryId;
     private String categoryName;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "category")
     private Set<Blog> blogSet;
 
     public Category() {
@@ -45,4 +45,5 @@ public class Category {
     public void setBlogSet(Set<Blog> blogSet) {
         this.blogSet = blogSet;
     }
+
 }

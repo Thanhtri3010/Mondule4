@@ -9,28 +9,30 @@
 </head>
 <h2 class="text-">List Blog</h2>
 <p>
-    <a th:href="@{/create}">
+    <a th:href="@{/blog/create}">
         Add new blog
     </a>
 </p>
 <body>
 <table class="table table-bordered border-primary">
     <tr>
-        <th>ID</th>
+        <th>STT</th>
         <th>Name</th>
-        <th>Toppic</th>
+        <th>Category</th>
+        <th>Date Create</th>
         <th>Status</th>
         <th>Edit</th>
         <th>View</th>
-        <th>Remove</th>
+        <th>Delete</th>
     </tr>
-    <tr th:each="blog : ${blogList}">
-        <td th:text="${blog.getId()}"></td>
+    <tr th:each="blog, iteration : ${blogList}">
+        <td th:text="${iteration.count}"></td>
         <td th:text="${blog.getName()}"></td>
-        <td th:text="${blog.getTopic()}"></td>
+        <td th:text="${blog.category.categoryName}"></td>
+        <td th:text="${blog.getDateCreate}"></td>
         <td th:text="${blog.getStatus()}"></td>
-        <td><a th:href="@{/edit/{id}(id=${blog.getId()})}">Edit</a></td>
-        <td><a th:href="@{/view/{id}(id=${blog.getId()})}">View</a></td>
+        <td><a th:href="@{/blog/edit/{id}(id=${blog.getId()})}">Edit</a></td>
+        <td><a th:href="@{/blog/view/{id}(id=${blog.getId()})}">View</a></td>
         <td>  <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                     th:data-bs-target="'#staticBackdrop' + ${blog.id}">
@@ -51,7 +53,7 @@
                             id = <span class="text-info" th:text="${blog.id}"></span>
                         </div>
                         <div class="modal-footer">
-                            <a th:href="@{/delete(id=${blog.id})}" class="btn btn-outline-success">Delete</a>
+                            <a th:href="@{/blog/delete(id=${blog.id})}" class="btn btn-outline-success">Delete</a>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>

@@ -1,9 +1,7 @@
 package com.example.blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Blog {
@@ -11,9 +9,14 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+    private Category category;
+
     private String topic;
     private String content;
     private String status;
+    private Date dateCreate;
 
     public Blog() {
     }
@@ -64,5 +67,21 @@ public class Blog {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 }

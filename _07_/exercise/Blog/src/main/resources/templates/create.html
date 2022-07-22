@@ -13,16 +13,14 @@
 <h2>New Blog</h2>
 <form action="create" method="post" th:object="${blog}">
     <div>
-        <label>ID</label>
-        <input class="form-control" type="text" th:field="*{id}" readonly/>
-    </div>
-    <div>
         <label>Name</label>
         <input class="form-control" type="text" th:field="*{name}"/>
     </div>
     <div>
-        <label>Toppic</label>
-        <input class="form-control" type="text" th:field="*{topic}"/>
+        <label>Category</label>
+        <select th:field="*{category}">
+            <option th:each="item : ${category}" th:value="${item.categoryId}" th:text="${item.categoryName}"></option>
+        </select>
     </div>
     <div>
         <label>Content</label>
@@ -33,7 +31,7 @@
         <input class="form-control" type="text" th:field="*{status}"/>
     </div>
     <div>
-        <a th:href="@{/list}">
+        <a th:href="@{/blog}">
             <input type="button" class="btn btn-outline-success" value="Back"/>
         </a>
         <input type="submit" class="btn btn-outline-success" value="Save"/>
