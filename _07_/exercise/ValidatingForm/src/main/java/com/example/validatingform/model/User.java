@@ -14,7 +14,7 @@ public class User {
     public User() {
     }
 
-    public User(@NotEmpty @Size(min = 2, max=30) String name, @Min(18) int age) {
+    public User(String name, int age) {
         this.name = name;
         this.age = age;
     }

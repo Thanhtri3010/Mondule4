@@ -48,12 +48,6 @@ public class ProductController {
         return "redirect:/product";
     }
 
-//    @GetMapping("/{id}/delete")
-//    public String delete(@PathVariable int id, Model model) {
-//        model.addAttribute("product", productService.findById(id));
-//        return "/delete";
-//    }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id, RedirectAttributes redirect) {
         productService.remove(id);
