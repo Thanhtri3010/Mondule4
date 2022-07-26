@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 align="center">DANH SÁCH CÁC ĐẦU SÁCH TRONG THƯ VIỆN</h2>
+    </div>
+    <div class="row mt-4" th:if="${message}">
+        <h4 align="center" class="text-danger" th:text="${message}"></h4>
+    </div>
+    <div class="row mt-4">
+        <form th:action="@{/book/pay}" method="get">
+            <label>Trả sách</label>
+            <input type="number" class="form-control mt-4" name="payBook">
+            <button type="submit" class="btn btn-primary mt-4">Trả sách</button>
+        </form>
+    </div>
+    <div class="row mt-4">
+        <table class="table table-row-cell">
+            <tr>
+                <th>STT</th>
+                <th>Tên sách</th>
+                <th>Tác giả</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+            <tr th:each="book, i : ${bookList}">
+                <td th:text="${i.count}"></td>
+                <td th:text="${book.bookName}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.quantity}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-6">
+                <a th:href="@{/book/create}">
+                    <button class="btn btn-primary">Mượn sách</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="col-lg-10 mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <h2 align="center">Mượn Sách</h2>
+            <form th:action="@{book/create}" method="post" th:object="userBorrow">
+                <table class="table" cellpadding="5">
+                    <tr>
+                        <th>Tên người mượn</th>
+                        <td><input type="text" class="form-control" th:field="*{userName}"></td>
+                    </tr>
+                    <tr>
+                        <th>Chọn loại Sách</th>
+                        <td>
+                            <select class="form-select" th:field="*{book.bookId}">
+                                <option th:each="i : ${bookList}" th:value="${i.bookId}" th:text="${i.bookName}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a th:href="/book">
+                                <button type="button" class="btn btn-outline-primary">
+                                    Quay lại
+                                </button>
+                            </a>
+                        </td>
+                        <td align="left">
+                            <button type="submit" class="btn btn-outline-primary">
+                                Mượn
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

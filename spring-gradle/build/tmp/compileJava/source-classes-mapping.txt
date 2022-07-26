@@ -1,2 +1,0 @@
-com/example/controller/GreetingController.java
- com.example.controller.GreetingController

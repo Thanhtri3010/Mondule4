@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 ">
+            <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png " width="40px" height="70px">
+        </div>
+        <div class="col-lg-10 ">
+            <p class="text-lg-end fs-4 pt-3"> Phạm Thành Tri</p>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Home</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Employye</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/service">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contract">Contract</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-2 border border">
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+        </div>
+        <div class="col-10 border border">
+            <div class="col-lg-10 mt-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2 align="center">Thêm mới nhân viên</h2>
+                        <form th:action="@{/employee/eidt}" method="post" th:object="${employee}">
+                            <table class="table" cellpadding="5">
+                                <tr>
+                                    <th>Họ tên nhân viên:</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeeName}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Ngày sinh:</th>
+                                    <td><input class="form-control" type="date" th:field="*{dateOfBirth}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Số căn cước:</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeeIdCard}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Lương</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeeSalary}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Số điện thoại:</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeePhoneNumber}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeeEmail}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Địa chỉ:</th>
+                                    <td><input class="form-control" type="text" th:field="*{employeeAddress}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Chức vụ:</th>
+                                    <td>
+                                        <select class="form-select" th:field="*{position.positionId}">
+                                            <option th:each="item : ${positionList}" th:value="${item.positionId}"
+                                                    th:text="${item.positionName}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Trình độ học vấn:</th>
+                                    <td>
+                                        <select class="form-select" th:field="*{educationDegree.educationDegreeId}">
+                                            <option th:each="item : ${educationDegreeList}"
+                                                    th:value="${item.educationDegreeId}"
+                                                    th:text="${item.educationDegreeName}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Vị trí :</th>
+                                    <td>
+                                        <select class="form-select" th:field="*{division.divisionID}">
+                                            <option th:each="item : ${divisionList}" th:value="${item.divisionID}"
+                                                    th:text="${item.divisionName}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">
+                                        <a href="/employee">
+                                            <button type="button" class="btn btn-outline-primary">
+                                                Quay lại danh sách khách hàng
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td align="left">
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Sửa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid border text-center">
+    <h3>Footer...</h3>
+</div>
+
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
