@@ -41,16 +41,17 @@ public class BookController {
     public String create(@ModelAttribute("userBorrow") UserBorrow userBorrow, RedirectAttributes redirectAttributes) {
         Book book = bookService.findById(userBorrow.getBook().getBookId());
         if (book.getQuantity() == 0) {
-            redirectAttributes.addFlashAttribute("messaga", "M??n th?t b?i, s�ch ?� h?t");
+            redirectAttributes.addFlashAttribute("message", "Mượn sách thất bại, sách đã hết");
         } else {
             book.setQuantity(book.getQuantity() - 1);
             bookService.save(book);
             userBorrowService.save(userBorrow);
-            redirectAttributes.addFlashAttribute("message", "M??n th�nh c�ng");
+            redirectAttributes.addFlashAttribute("message", "Mượn thành công");
 
         }
         return "redirect:/book";
     }
+
     @GetMapping("/view/{id}")
     public String view(@PathVariable int id, Model model) {
         model.addAttribute("book", bookService.findById(id));
@@ -61,12 +62,12 @@ public class BookController {
     public String payBook(@RequestParam("payBook") Long code, RedirectAttributes redirectAttributes) {
         UserBorrow userBorrow = userBorrowService.findByCode(code);
         if (userBorrow == null) {
-            redirectAttributes.addFlashAttribute("message", "M� s�ch kh�ng t?n t?i!");
+            redirectAttributes.addFlashAttribute("message", "Mã sách không tồn tại");
         } else {
             Book book = bookService.findById(userBorrow.getBook().getBookId());
             book.setQuantity(book.getQuantity() + 1);
             userBorrowService.remove(userBorrow);
-            redirectAttributes.addFlashAttribute("message", "Tr? s�ch th�nh c�ng!");
+            redirectAttributes.addFlashAttribute("message", "Trả sách thành công!");
         }
         return "redirect:/book";
     }

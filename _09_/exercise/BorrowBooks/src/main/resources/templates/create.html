@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <h2 align="center">Mượn Sách</h2>
-            <form th:action="@{book/create}" method="post" th:object="userBorrow">
+            <form th:action="@{/book/create}" method="post" th:object="${userBorrow}">
                 <table class="table" cellpadding="5">
                     <tr>
                         <th>Tên người mượn</th>
@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <td align="center">
-                            <a th:href="/book">
+                            <a th:href="@{/book}">
                                 <button type="button" class="btn btn-outline-primary">
                                     Quay lại
                                 </button>

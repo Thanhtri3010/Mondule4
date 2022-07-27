@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product:${productList}">
+                    <td th:text="${product.name}"></td>
+                    <td>
+                        <a th:href="@{/shop/detail/{id}(id=${product.id})}">
+                            <img th:src="@{${product.image}}" style="width: 70px; height: auto">
+                        </a>
+                    </td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td>
+                        <a class="btn btn-success" role="button" th:href="@{/shop/add/__${product.id}__}">+</a>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4" th:if="${historyProduct}">
+            <div class="card sticky-top border-0">
+                <img th:src="${historyProduct.image}" class="card-imq-top">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${historyProduct.name}"></h4>
+                    <p class="card-text" th:text="${historyProduct.price}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src=" @{/js/bootstrap.min.js}"></script>
+</body>
+</html>
