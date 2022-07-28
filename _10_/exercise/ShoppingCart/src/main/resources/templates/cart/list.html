@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="modal-body">
                                     Bạn muốn xóa <span class="text-info"
-                                                                  th:text="${productMap.key.name}"> ?</span>
+                                                       th:text="${productMap.key.name}"> ?</span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-secondary"
@@ -73,7 +73,8 @@
             </tr>
             </tbody>
         </table>
-        <div class="alert alert-warning" role="alert" th:if="${cart ==null || cart.getProductDtoIntegerMap() .size() == 0}">
+        <div class="alert alert-warning" role="alert"
+             th:if="${cart ==null || cart.getProductDtoIntegerMap() .size() == 0}">
             Cart Empty.
         </div>
 

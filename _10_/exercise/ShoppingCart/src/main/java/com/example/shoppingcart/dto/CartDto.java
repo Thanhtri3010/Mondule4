@@ -27,15 +27,16 @@ public class CartDto {
         if (productDtoIntegerMap.containsKey(productDto)) {
             Integer currentValue = productDtoIntegerMap.get(productDto);
             productDtoIntegerMap.replace(productDto, currentValue + 1);// update
-        }else {
-            productDtoIntegerMap.put(productDto,1); //add
+        } else {
+            productDtoIntegerMap.put(productDto, 1); //add
         }
     }
 
-    public void delete(ProductDto productDto){
+    public void delete(ProductDto productDto) {
         productDtoIntegerMap.remove(productDto);
     }
-    public Float countTotalPayment(){
+
+    public Float countTotalPayment() {
         float payment = 0;
         for (Map.Entry<ProductDto, Integer> entry : productDtoIntegerMap.entrySet()) {
             payment += entry.getKey().getPrice() * (float) entry.getValue();

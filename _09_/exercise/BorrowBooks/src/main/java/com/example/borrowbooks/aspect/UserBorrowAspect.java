@@ -19,7 +19,7 @@ public class UserBorrowAspect {
 
     @AfterReturning("userBorrowPointCut()")
     public void userBorrowLog() {
-        System.out.println("1 ng??i d�ng m??n s�ch th�nh c�ng, l�c " + LocalDateTime.now());
+        System.out.println("1 người dùng mượn sách thành công, lúc " + LocalDateTime.now());
     }
 
     @Pointcut("execution(* com.example.borrowbooks.controller.BookController.payBook(..))")
@@ -28,15 +28,16 @@ public class UserBorrowAspect {
 
     @AfterReturning("payBookPointCut()")
     public void payBookLog() {
-        System.out.println("1 ng??i d�ng tr? s�ch th�nh c�ng, l�c " + LocalDateTime.now());
+        System.out.println("1 người dùng trả sách thành công, lúc " + LocalDateTime.now());
     }
 
     @Pointcut("within(com.example.borrowbooks.controller.*)")
     public void allMethodPointCut() {
     }
+
     @After("allMethodPointCut()")
     public void writeAllAction() {
         count++;
-        System.out.println("T�nh ??n l�c: " + LocalDateTime.now() + ", c� t?t c?: " + count + " thao t�c v?i th? vi?n");
+        System.out.println("Tính đến lúc: " + LocalDateTime.now() + ", có tất cả: " + count + " thao tác vào thư viện");
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class UserBorrowService implements IUserBorrowService {
     @Autowired
@@ -19,7 +20,7 @@ public class UserBorrowService implements IUserBorrowService {
 
     @Override
     public void save(UserBorrow userBorrow) {
-        long code = (long)Math.floor(Math.random() *99999)+1000;
+        long code = (long) Math.floor(Math.random() * 99999) + 1000;
         userBorrow.setCode(code);
         userBorrowRepository.save(userBorrow);
     }

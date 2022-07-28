@@ -7,5 +7,5 @@ import javax.transaction.Transactional;
 
 
 @Transactional
-public interface IBlogRepository extends JpaRepository<Blog,Integer> {
+public interface IBlogRepository extends JpaRepository<Blog, Integer> {
 }

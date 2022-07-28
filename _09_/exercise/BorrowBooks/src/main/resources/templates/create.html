@@ -20,7 +20,8 @@
                         <th>Chọn loại Sách</th>
                         <td>
                             <select class="form-select" th:field="*{book.bookId}">
-                                <option th:each="i : ${bookList}" th:value="${i.bookId}" th:text="${i.bookName}"></option>
+                                <option th:each="i : ${bookList}" th:value="${i.bookId}"
+                                        th:text="${i.bookName}"></option>
                             </select>
                         </td>
                     </tr>

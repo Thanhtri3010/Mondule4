@@ -23,21 +23,23 @@ public class SongController {
     private ISongService songService;
 
     @GetMapping("")
-    public String show(Model model){
+    public String show(Model model) {
         List<Song> songList = songService.findAll();
-        model.addAttribute("songList",songList);
+        model.addAttribute("songList", songList);
         return "list";
     }
+
     @GetMapping("create")
-    public String showCreate(Model model){
-        model.addAttribute("songDto",new SongDto());
+    public String showCreate(Model model) {
+        model.addAttribute("songDto", new SongDto());
         return "create";
     }
+
     @PostMapping("create")
     public String create(@ModelAttribute @Validated SongDto songDto,
                          BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes){
-        if (bindingResult.hasFieldErrors()){
+                         RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasFieldErrors()) {
             return "create";
         }
         Song song = new Song();
@@ -48,10 +50,11 @@ public class SongController {
     }
 
     @GetMapping("edit/{id}")
-    public String showEdit(@PathVariable int id, Model model){
-        model.addAttribute("songDto",songService.findById(id));
+    public String showEdit(@PathVariable int id, Model model) {
+        model.addAttribute("songDto", songService.findById(id));
         return "edit";
     }
+
     @PostMapping("edit")
     public String edit(@ModelAttribute @Validated SongDto songDto,
                        BindingResult bindingResult,

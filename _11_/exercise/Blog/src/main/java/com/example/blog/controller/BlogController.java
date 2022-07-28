@@ -26,12 +26,12 @@ public class BlogController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Blog> viewDetail(@PathVariable ("id")int id){
+    public ResponseEntity<Blog> viewDetail(@PathVariable("id") int id) {
         Blog blog = blogService.findById(id);
-        if (blog == null){
+        if (blog == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(blog,HttpStatus.OK);
+        return new ResponseEntity<>(blog, HttpStatus.OK);
     }
 
 }

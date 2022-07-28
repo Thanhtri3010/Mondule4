@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class ProductService implements IProductService {
     @Autowired
     private IProductRepository productRepository;
+
     @Override
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
@@ -20,7 +22,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void save(Product product) {
-productRepository.save(product);
+        productRepository.save(product);
     }
 
     @Override
