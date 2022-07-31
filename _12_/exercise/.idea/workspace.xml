@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bda1bdcd-00c2-4247-a020-268248766141" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/controller/SmartphoneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/model/Smartphone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/repository/ISmartphoneRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/service/ISmartphoneService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/java/com/example/mobiphone/service/impl/SmartphoneService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/resources/static/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/MobiPhone/src/main/resources/templates/list.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2CbSE1CjW8OxfM1m84IlBQW3CVG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bda1bdcd-00c2-4247-a020-268248766141" name="Changes" comment="" />
+      <created>1659069675392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659069675392</updated>
+      <workItem from="1659069676527" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
