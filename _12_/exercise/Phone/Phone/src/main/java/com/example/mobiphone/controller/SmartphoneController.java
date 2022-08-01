@@ -26,7 +26,7 @@ public class SmartphoneController {
         return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("{id")
+    @GetMapping("{id}")
     public ResponseEntity findId(@PathVariable int id) {
         return new ResponseEntity<>(smartphoneService.findById(id), HttpStatus.OK);
     }
@@ -34,7 +34,7 @@ public class SmartphoneController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Smartphone> deleteSmartphone(@PathVariable int id) {
         Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
-        if (smartphoneOptional.isPresent()) {
+        if (!smartphoneOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         smartphoneService.remove(id);

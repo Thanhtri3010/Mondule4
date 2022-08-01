@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<h2 class="text-">List Blog</h2>
+<p>
+    <a th:href="@{/category/create}">
+        Add new category
+    </a>
+</p>
+<body>
+<table class="table table-bordered border-primary">
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="category, iteration : ${categoryList}">
+        <td th:text="${iteration.count}"></td>
+        <td th:text="${category.getCategoryName()}"></td>
+        <td><a th:href="@{/category/edit/{id}(id=${category.getCategoryId()})}">Edit</a></td>
+        <td>  <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    th:data-bs-target="'#staticBackdrop' + ${category.categoryId}">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="staticBackdrop + ${category.categoryId}" data-bs-backdrop="static"
+                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want delete product <span class="text-info" th:text="${category.categoryName}"></span> with
+                            id = <span class="text-info" th:text="${category.categoryId}"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/category/delete(id=${category.categoryId})}" class="btn btn-outline-success">Delete</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+
+
+    </tr>
+</table>
+</body>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</html>
