@@ -1,14 +1,18 @@
 package com.example.controller;
 
+import com.example.dto.CustomerDto;
 import com.example.model.customer.Customer;
 import com.example.model.customer.CustomerType;
 import com.example.service.customer.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,14 +49,21 @@ public class CustomerController {
     public String showCreate(Model model) {
         List<CustomerType> customerTypeList = customerService.findAllCustomerType();
         model.addAttribute("customerTypeList", customerTypeList);
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customerDto", new CustomerDto());
         return "customer/create";
     }
 
     @PostMapping("create")
-    public String create(@ModelAttribute("customer") Customer customer, RedirectAttributes redirectAttributes){
+    public String create(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model){
+        if (bindingResult.hasFieldErrors()){
+            List<CustomerType> customerTypeList = customerService.findAllCustomerType();
+            model.addAttribute("customerTypeList", customerTypeList);
+            return "customer/create";
+        }
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto,customer);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("message","Thêm m?i thành công");
+        redirectAttributes.addFlashAttribute("message","ThÃªm má»›i thÃ nh cÃ´ng");
         return "redirect:/customer";
     }
 
@@ -60,14 +71,21 @@ public class CustomerController {
     public String showEdit(@PathVariable int id, Model model){
         List<CustomerType> customerTypeList = customerService.findAllCustomerType();
         model.addAttribute("customerTypeList",customerTypeList);
-        model.addAttribute("customer",customerService.findCustomerById(id));
+        model.addAttribute("customerDto",customerService.findCustomerById(id));
         return "/customer/edit";
     }
 
     @PostMapping("edit")
-    public String update(@ModelAttribute("customer") Customer customer, RedirectAttributes redirectAttributes) {
+    public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto,BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
+        if (bindingResult.hasFieldErrors()){
+            List<CustomerType> customerTypeList = customerService.findAllCustomerType();
+            model.addAttribute("customerTypeList",customerTypeList);
+            return "/customer/edit";
+        }
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto,customer);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("message", "C?p nh?t thành công!");
+        redirectAttributes.addFlashAttribute("message", "Cáº­p nháº­t thÃ nh cÃ´ng!");
         return "redirect:/customer";
     }
 

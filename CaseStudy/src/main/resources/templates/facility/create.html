@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 ">
+            <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png " width="40px" height="70px">
+        </div>
+        <div class="col-lg-10 ">
+            <p class="text-lg-end fs-4 pt-3"> Phạm Thành Tri</p>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Employye</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/facility">Facility</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contract">Contract</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-2 border border">
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+        </div>
+        <div class="col-10 border border">
+            <div class="col-lg-10 mt-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2 align="center">Thêm mới dịch vụ</h2>
+                        <form th:action="@{/facility/create}" method="post" th:object="${facilityDto}">
+                            <table class="table" cellpadding="5">
+                                <tr>
+                                    <th>Tên Dịch Vụ:</th>
+                                    <td><input class="form-control" type="text" th:field="*{facilityName}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('facilityName')}"
+                                              th:errors="*{facilityName}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Diện tích:</th>
+                                    <td><input class="form-control" type="text" th:field="*{area}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('area')}"
+                                              th:errors="*{area}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Giá:</th>
+                                    <td><input class="form-control" type="text" th:field="*{cost}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('cost')}"
+                                              th:errors="*{cost}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Số lượng người</th>
+                                    <td><input class="form-control" type="text" th:field="*{maxPeople}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('maxPeople')}"
+                                              th:errors="*{maxPeople}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Loại thuê:</th>
+                                    <td>
+                                        <select class="form-select" th:field="*{rentType.rentTypeId}">
+                                            <option th:each="item : ${rentTypeList}" th:value="${item.rentTypeId}"
+                                                    th:text="${item.rentTypeName}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Loại Cơ Sở:</th>
+                                    <td>
+                                        <select class="form-select" th:field="*{facilityType.facilityTypeId}">
+                                            <option th:each="item : ${facilityTypeList}" th:value="${item.facilityTypeId}"
+                                                    th:text="${item.facilityTypeName}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Loại Phòng:</th>
+                                    <td><input class="form-control" type="text" th:field="*{standardRoom}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('standardRoom')}"
+                                              th:errors="*{standardRoom}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Mô Tả Sự Thuận Tiện khác:</th>
+                                    <td><input class="form-control" type="text" th:field="*{descriptionOtherConvenience}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+                                              th:errors="*{descriptionOtherConvenience}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Hồ Bơi:</th>
+                                    <td><input class="form-control" type="text" th:field="*{poolArea}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('poolArea')}"
+                                              th:errors="*{poolArea}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Số tầng:</th>
+                                    <td><input class="form-control" type="text" th:field="*{numberOfFloors}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('numberOfFloors')}"
+                                              th:errors="*{numberOfFloors}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Dịch vụ miễn phí:</th>
+                                    <td><input class="form-control" type="text" th:field="*{facilityFree}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('facilityFree')}"
+                                              th:errors="*{facilityFree}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td align="center">
+                                        <a href="/facility">
+                                            <button type="button" class="btn btn-outline-primary">
+                                                Quay lại danh sách khách hàng
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td align="left">
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Tạo mới
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid border text-center">
+    <h3>Footer...</h3>
+</div>
+
+
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

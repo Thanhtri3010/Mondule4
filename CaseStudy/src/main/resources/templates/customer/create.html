@@ -25,7 +25,7 @@
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="/">Home</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/service">Service</a>
+                    <a class="nav-link" href="/facility">Facility</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contract">Contract</a>
@@ -61,7 +61,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <h2 align="center">Thêm mới khách hàng</h2>
-                        <form th:action="@{/customer/create}" method="post" th:object="${customer}">
+                        <form th:action="@{/customer/create}" method="post" th:object="${customerDto}">
                             <table class="table" cellpadding="5">
                                 <tr>
                                     <th>Loại khách:</th>
@@ -72,14 +72,20 @@
                                                     th:text="${item.customerTypeName}"></option>
                                         </select>
                                     </td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerType')}"
+                                              th:errors="*{customerType}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Họ tên:</th>
                                     <td><input class="form-control" type="text" th:field="*{customerName}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerName')}"
+                                              th:errors="*{customerName}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Ngày sinh:</th>
                                     <td><input class="form-control" type="date" th:field="*{dateOfBirth}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}"
+                                              th:errors="*{dateOfBirth}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Giới tính:</th>
@@ -88,22 +94,32 @@
                                         <input class="form-check-input" type="radio" th:field="*{gender}" value="1">Nam
                                         <input class="form-check-input" type="radio" th:field="*{gender}" value="2">Khác
                                     </td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('gender')}"
+                                              th:errors="*{gender}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Số căn cước:</th>
                                     <td><input class="form-control" type="text" th:field="*{customerIdCard}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerIdCard')}"
+                                              th:errors="*{customerIdCard}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Số điện thoại:</th>
                                     <td><input class="form-control" type="text" th:field="*{customerPhoneNumber}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerPhoneNumber')}"
+                                              th:errors="*{customerPhoneNumber}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Email:</th>
                                     <td><input class="form-control" type="text" th:field="*{customerEmail}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerEmail')}"
+                                              th:errors="*{customerEmail}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Địa chỉ:</th>
                                     <td><input class="form-control" type="text" th:field="*{customerAddress}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('customerAddress')}"
+                                              th:errors="*{customerAddress}"></span></td>
                                 </tr>
 
                                 <tr>

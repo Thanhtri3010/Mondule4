@@ -25,7 +25,7 @@
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="/">Home</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/service">Service</a>
+                    <a class="nav-link" href="/facility">Facility</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contract">Contract</a>
@@ -61,35 +61,49 @@
                 <div class="container-fluid">
                     <div class="row">
                         <h2 align="center">Thêm mới nhân viên</h2>
-                        <form th:action="@{/employee/create}" method="post" th:object="${employee}">
+                        <form th:action="@{/employee/create}" method="post" th:object="${employeeDto}">
                             <table class="table" cellpadding="5">
                                 <tr>
                                     <th>Họ tên nhân viên:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeName}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeeName')}"
+                                              th:errors="*{employeeName}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Ngày sinh:</th>
                                     <td><input class="form-control" type="date" th:field="*{dateOfBirth}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}"
+                                              th:errors="*{dateOfBirth}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Số căn cước:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeIdCard}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeeIdCard')}"
+                                              th:errors="*{employeeIdCard}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Lương</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeSalary}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeeSalary')}"
+                                              th:errors="*{employeeSalary}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Số điện thoại:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeePhoneNumber}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeePhoneNumber')}"
+                                              th:errors="*{employeePhoneNumber}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Email:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeEmail}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeeEmail')}"
+                                              th:errors="*{employeeEmail}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Địa chỉ:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeAddress}"></td>
+                                    <td><span class="text-danger" th:if="${#fields.hasErrors('employeeAddress')}"
+                                              th:errors="*{employeeAddress}"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Chức vụ:</th>
