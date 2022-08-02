@@ -20,6 +20,7 @@ public class CustomerService implements ICustomerService {
 
     @Autowired
     private ICustomerTypeRepository customerTypeRepository;
+
     @Override
     public List<CustomerType> findAllCustomerType() {
         return customerTypeRepository.findAll();
@@ -47,6 +48,6 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<Customer> findAllCustomerByKeyword(String keyword, Pageable pageable) {
-        return customerRepository.findAllCustomerByKeyword("%"+keyword+"%",pageable);
+        return customerRepository.findAllCustomerByKeyword("%" + keyword + "%", pageable);
     }
 }

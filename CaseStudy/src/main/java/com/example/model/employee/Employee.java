@@ -17,7 +17,7 @@ public class Employee {
     private String employeeAddress;
 
     @ManyToOne
-    @JoinColumn(name = "positionId",referencedColumnName = "positionID")
+    @JoinColumn(name = "positionId", referencedColumnName = "positionID")
     private Position position;
 
     @ManyToOne
@@ -31,8 +31,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int employeeId, String employeeName, String dateOfBirth, String employeeIdCard, double employeeSalary, String employeePhoneNumber, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division) {
-        this.employeeId = employeeId;
+
+    public Employee(String employeeName, String dateOfBirth, String employeeIdCard, double employeeSalary, String employeePhoneNumber, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division) {
         this.employeeName = employeeName;
         this.dateOfBirth = dateOfBirth;
         this.employeeIdCard = employeeIdCard;

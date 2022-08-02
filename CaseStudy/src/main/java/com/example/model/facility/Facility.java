@@ -15,11 +15,11 @@ public class Facility {
     private int maxPeople;
 
     @ManyToOne
-    @JoinColumn(name = "rentTypeId",referencedColumnName = "rentTypeId")
+    @JoinColumn(name = "rentTypeId", referencedColumnName = "rentTypeId")
     private RentType rentType;
 
     @ManyToOne
-    @JoinColumn(name = "facilityTypeId",referencedColumnName = "facilityTypeId")
+    @JoinColumn(name = "facilityTypeId", referencedColumnName = "facilityTypeId")
     private FacilityType facilityType;
 
     private String standardRoom;

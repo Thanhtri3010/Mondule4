@@ -100,7 +100,8 @@
                                     <th>Loại Cơ Sở:</th>
                                     <td>
                                         <select class="form-select" th:field="*{facilityType.facilityTypeId}">
-                                            <option th:each="item : ${facilityTypeList}" th:value="${item.facilityTypeId}"
+                                            <option th:each="item : ${facilityTypeList}"
+                                                    th:value="${item.facilityTypeId}"
                                                     th:text="${item.facilityTypeName}"></option>
                                         </select>
                                     </td>
@@ -113,9 +114,12 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        Mô Tả Sự Thuận Tiện khác:</th>
-                                    <td><input class="form-control" type="text" th:field="*{descriptionOtherConvenience}"></td>
-                                    <td><span class="text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+                                        Mô Tả Sự Thuận Tiện khác:
+                                    </th>
+                                    <td><input class="form-control" type="text"
+                                               th:field="*{descriptionOtherConvenience}"></td>
+                                    <td><span class="text-danger"
+                                              th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
                                               th:errors="*{descriptionOtherConvenience}"></span></td>
                                 </tr>
                                 <tr>
@@ -162,7 +166,6 @@
 <div class="container-fluid border text-center">
     <h3>Footer...</h3>
 </div>
-
 
 
 <script th:src="@{/js/bootstrap.min.js}"></script>

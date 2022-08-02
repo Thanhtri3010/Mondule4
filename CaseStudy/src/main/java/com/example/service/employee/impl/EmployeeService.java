@@ -68,7 +68,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Page<Employee> findAllEmployeeByKeyword(String keyword, Pageable pageable) {
-        return employeeRepository.findAllEmployeeByKeyword("%"+keyword+"%",pageable);
+        return employeeRepository.findAllEmployeeByKeyword("%" + keyword + "%", pageable);
     }
 
 }

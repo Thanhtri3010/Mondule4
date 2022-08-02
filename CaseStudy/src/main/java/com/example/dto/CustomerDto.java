@@ -23,7 +23,7 @@ public class CustomerDto {
     @Pattern(message = "*Không đúng định dạng (XXXXXXXXX với X là số từ 0 - 9)", regexp = "^[0-9]{9}$")
     private String customerIdCard;
 
-    @Pattern(message = "*Không đúng định dạng (090XXXXXXX hoặc 091XXXXXXX với X là số từ 0 - 9)",regexp = "((84\\)+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7,}")
+    @Pattern(message = "*Không đúng định dạng (090XXXXXXX hoặc 091XXXXXXX với X là số từ 0 - 9)", regexp = "((84\\)+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7,}")
     private String customerPhoneNumber;
 
     @Email(message = "*Email không đúng định dạng (abc@example.com ...)", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
+public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value = "select * from customer where customer_name like :keyword",
             nativeQuery = true,
             countQuery = "select * from customer where customer_name like :keyword")

@@ -16,13 +16,13 @@ public class EmployeeDto {
     @NotBlank(message = "Không được để trống")
     private String dateOfBirth;
 
-    @Pattern(message = "*Không đúng định dạng (XXXXXXXXX v?i X là s? t? 0 - 9)", regexp = "^[0-9]{9}$")
+    @Pattern(message = "*Không đúng định dạng (XXXXXXXXX với X là số từ 0 - 9)", regexp = "^[0-9]{9}$")
     private String employeeIdCard;
 
     @Min(value = 1, message = "*Phải nhập số? > 0")
     private double employeeSalary;
 
-    @Pattern(message = "*Không đúng định dạng (090XXXXXXX ho?c 091XXXXXXX v?i X là s? t? 0 - 9)",regexp = "((84\\)+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7,}")
+    @Pattern(message = "*Không đúng định dạng (090XXXXXXX hoặc 091XXXXXXX với X là số từ 0 - 9)", regexp = "((84\\)+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7,}")
     private String employeePhoneNumber;
 
     @Email(message = "*Email Không đúng định dạng (abc@example.com ...)", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")

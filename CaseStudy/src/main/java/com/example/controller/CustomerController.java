@@ -39,6 +39,11 @@ public class CustomerController {
         Page<Customer> customerList = customerService.findAllCustomerByKeyword(keyword, pageable);
         List<CustomerType> customerTypeList = customerService.findAllCustomerType();
 
+        if (customerList.isEmpty()) {
+            model.addAttribute("message", "Không tìm thấy kết quả phù hợp!");
+            return "customer/list";
+        }
+
         model.addAttribute("customerList", customerList);
         model.addAttribute("customerTypeList", customerTypeList);
 
@@ -54,36 +59,36 @@ public class CustomerController {
     }
 
     @PostMapping("create")
-    public String create(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model){
-        if (bindingResult.hasFieldErrors()){
+    public String create(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerService.findAllCustomerType();
             model.addAttribute("customerTypeList", customerTypeList);
             return "customer/create";
         }
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto,customer);
+        BeanUtils.copyProperties(customerDto, customer);
         customerService.save(customer);
-        redirectAttributes.addFlashAttribute("message","Thêm mới thành công");
+        redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
         return "redirect:/customer";
     }
 
     @GetMapping("edit/{id}")
-    public String showEdit(@PathVariable int id, Model model){
+    public String showEdit(@PathVariable int id, Model model) {
         List<CustomerType> customerTypeList = customerService.findAllCustomerType();
-        model.addAttribute("customerTypeList",customerTypeList);
-        model.addAttribute("customerDto",customerService.findCustomerById(id));
+        model.addAttribute("customerTypeList", customerTypeList);
+        model.addAttribute("customerDto", customerService.findCustomerById(id));
         return "/customer/edit";
     }
 
     @PostMapping("edit")
-    public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto,BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
-        if (bindingResult.hasFieldErrors()){
+    public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerService.findAllCustomerType();
-            model.addAttribute("customerTypeList",customerTypeList);
+            model.addAttribute("customerTypeList", customerTypeList);
             return "/customer/edit";
         }
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto,customer);
+        BeanUtils.copyProperties(customerDto, customer);
         customerService.save(customer);
         redirectAttributes.addFlashAttribute("message", "Cập nhật thành công!");
         return "redirect:/customer";
