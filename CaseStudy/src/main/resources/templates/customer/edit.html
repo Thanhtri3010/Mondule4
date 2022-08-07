@@ -62,6 +62,7 @@
                     <h2 align="center">Edit Customer</h2>
                     <form method="post" th:action="@{/customer/edit}" th:object="${customerDto}">
                         <table class="table" cellpadding="5">
+                            <input type="text" hidden th:field="*{customerId}">
                             <tr>
                                 <th>Loại khách:</th>
                                 <td>

@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 public class CustomerDto {
     private int customerId;
 
-    @Pattern(message = "*Không đúng định dạng (VD: Lê Văn An)", regexp = "^([A-Z\\p{L}]{1}[a-z\\p{L}]*)+(\\s([A-Z\\p{L}]{1}[a-z\\p{L}]*))*$")
+    @Pattern(message = "*Không đúng định dạng (VD: Lê Văn An)", regexp = "^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$")
     private String customerName;
 
     @NotBlank(message = "Không được để trống")
@@ -23,7 +23,7 @@ public class CustomerDto {
     @Pattern(message = "*Không đúng định dạng (XXXXXXXXX với X là số từ 0 - 9)", regexp = "^[0-9]{9}$")
     private String customerIdCard;
 
-    @Pattern(message = "*Không đúng định dạng (090XXXXXXX hoặc 091XXXXXXX với X là số từ 0 - 9)", regexp = "((84\\)+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7,}")
+    @Pattern(message = "*Không đúng định dạng (090XXXXXXX hoặc 091XXXXXXX với X là số từ 0 - 9)", regexp = "^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")
     private String customerPhoneNumber;
 
     @Email(message = "*Email không đúng định dạng (abc@example.com ...)", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")

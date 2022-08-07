@@ -1,6 +1,10 @@
 package com.example.model.employee;
 
+import com.example.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -28,11 +32,17 @@ public class Employee {
     @JoinColumn(name = "divisionId", referencedColumnName = "divisionId")
     private Division division;
 
+
+    @OneToMany(mappedBy = "employee")
+    @JsonBackReference
+    private Set<Contract> contract;
+
     public Employee() {
     }
 
 
-    public Employee(String employeeName, String dateOfBirth, String employeeIdCard, double employeeSalary, String employeePhoneNumber, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division) {
+    public Employee(int employeeId, String employeeName, String dateOfBirth, String employeeIdCard, double employeeSalary, String employeePhoneNumber, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Set<Contract> contract) {
+        this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.dateOfBirth = dateOfBirth;
         this.employeeIdCard = employeeIdCard;
@@ -43,6 +53,7 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
+        this.contract = contract;
     }
 
     public int getEmployeeId() {
@@ -131,5 +142,13 @@ public class Employee {
 
     public void setDivision(Division division) {
         this.division = division;
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 }

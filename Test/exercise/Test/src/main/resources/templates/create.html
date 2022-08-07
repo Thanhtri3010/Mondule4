@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+
+<div class="col-12 border border">
+    <div class="col-lg-10 mt-4">
+        <div class="container-fluid">
+            <div class="row">
+                <h2 align="center">Thêm mới hoc sinh</h2>
+                <form th:action="@{/student/create}" method="post" th:object="${studentDto}">
+                    <table class="table" cellpadding="5">
+                        <tr>
+                            <th>Ten lop:</th>
+                            <td>
+                                <select class="form-select" th:field="*{classRoom.classRoomId}">
+                                    <option th:each="item : ${classRoomList}"
+                                            th:value="${item.classRoomId}"
+                                            th:text="${item.classRoomName}"></option>
+                                </select>
+                            </td>
+                            <td><span class="text-danger" th:if="${#fields.hasErrors('classRoom')}"
+                                      th:errors="*{classRoom}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Họ tên:</th>
+                            <td><input class="form-control" type="text" th:field="*{studentName}"></td>
+                            <td><span class="text-danger" th:if="${#fields.hasErrors('studentName')}"
+                                      th:errors="*{studentName}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ngày sinh:</th>
+                            <td><input class="form-control" type="date" th:field="*{studentAge}"></td>
+                            <td><span class="text-danger" th:if="${#fields.hasErrors('studentAge')}"
+                                      th:errors="*{studentAge}"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Giới tính:</th>
+                            <td>
+                                <input class="form-check-input" type="radio" th:field="*{studentGender}" value="0">Nữ
+                                <input class="form-check-input" type="radio" th:field="*{studentGender}" value="1">Nam
+                                <input class="form-check-input" type="radio" th:field="*{studentGender}" value="2">Khác
+                            </td>
+                            <td><span class="text-danger" th:if="${#fields.hasErrors('studentGender')}"
+                                      th:errors="*{studentGender}"></span></td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <a href="/student">
+                                    <button type="button" class="btn btn-outline-primary">
+                                        Quay lại danh sách hoc sinh
+                                    </button>
+                                </a>
+                            </td>
+                            <td align="left">
+                                <button type="submit" class="btn btn-outline-primary">
+                                    Tạo mới
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@ public class EmployeeDto {
 
     private int employeeId;
 
-    @Pattern(message = "*Không đúng định dạng (VD: Lê Văn An)", regexp = "^([A-Z\\p{L}]{1}[a-z\\p{L}]*)+(\\s([A-Z\\p{L}]{1}[a-z\\p{L}]*))*$")
+    @Pattern(message = "*Không đúng định dạng (VD: Lê Văn An)", regexp = "^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$")
     private String employeeName;
 
     @NotBlank(message = "Không được để trống")

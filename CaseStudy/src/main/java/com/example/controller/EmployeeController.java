@@ -58,31 +58,65 @@ public class EmployeeController {
         return "employee/list";
     }
 
-    @PostMapping("/create")
-    public String create(@RequestParam("newName") String name, @RequestParam("newBirthDay") String birthDay, @RequestParam("newIdentity") String idCard, @RequestParam("newSalary") double salary, @RequestParam("newPhone") String phone, @RequestParam("newEmail") String email, @RequestParam("newAddress") String address, @RequestParam("newPosition") Position position, @RequestParam("newEducationDegree") EducationDegree educationDegree, @RequestParam("newDivision") Division division, RedirectAttributes redirectAttributes) {
-        employeeService.save(new Employee(name, birthDay, idCard, salary, phone, email, address, position, educationDegree, division));
-        redirectAttributes.addFlashAttribute("message", "Thêm mới thành công!");
+    @GetMapping("create")
+    public String showCreate(Model model) {
+        List<Position> positionList = employeeService.findAllPosition();
+        List<EducationDegree> educationDegreeList = employeeService.findAllEducationDegree();
+        List<Division> divisionList = employeeService.findAllDivision();
+        model.addAttribute("positionList", positionList);
+        model.addAttribute("educationDegreeList", educationDegreeList);
+        model.addAttribute("divisionList", divisionList);
+        model.addAttribute("employeeDto", new EmployeeDto());
+        return "employee/create";
+    }
+
+    @PostMapping("create")
+    public String create(@Validated @ModelAttribute("employeeDto") EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            List<Position> positionList = employeeService.findAllPosition();
+            List<EducationDegree> educationDegreeList = employeeService.findAllEducationDegree();
+            List<Division> divisionList = employeeService.findAllDivision();
+            model.addAttribute("positionList", positionList);
+            model.addAttribute("educationDegreeList", educationDegreeList);
+            model.addAttribute("divisionList", divisionList);
+            return "employee/create";
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto, employee);
+        employeeService.save(employee);
+        redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
         return "redirect:/employee";
     }
 
-//    @PostMapping("/update")
-//    public String update(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("birthDay") String birthDay, @RequestParam("idCard") String idCard, @RequestParam("salary") Double salary, @RequestParam("phone") String phone, @RequestParam("email") String email, @RequestParam("address") String address, @RequestParam("position") Position position, @RequestParam("educationDegree") EducationDegree educationDegree, @RequestParam("division") Division division, RedirectAttributes redirectAttributes) {
-//        Employee employee = employeeService.findById(id);
-//        employee.setName(name);
-//        employee.setBirthDay(birthDay);
-//        employee.setIdCard(idCard);
-//        employee.setSalary(salary);
-//        employee.setPhone(phone);
-//        employee.setEmail(email);
-//        employee.setAddress(address);
-//        employee.setPosition(position);
-//        employee.setEducationDegree(educationDegree);
-//        employee.setDivision(division);
-//        employeeService.save(employee);
-//        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công!");
-//        return "redirect:/employee";
-//    }
+    @GetMapping("edit/{id}")
+    public String showEdit(@PathVariable int id, Model model) {
+        List<Position> positionList = employeeService.findAllPosition();
+        List<EducationDegree> educationDegreeList = employeeService.findAllEducationDegree();
+        List<Division> divisionList = employeeService.findAllDivision();
+        model.addAttribute("positionList", positionList);
+        model.addAttribute("educationDegreeList", educationDegreeList);
+        model.addAttribute("divisionList", divisionList);
+        model.addAttribute("employeeDto", employeeService.findEmployeeById(id));
+        return "/employee/edit";
+    }
 
+    @PostMapping("edit")
+    public String update(@Validated @ModelAttribute("employeeDto") EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            List<Position> positionList = employeeService.findAllPosition();
+            List<EducationDegree> educationDegreeList = employeeService.findAllEducationDegree();
+            List<Division> divisionList = employeeService.findAllDivision();
+            model.addAttribute("positionList", positionList);
+            model.addAttribute("educationDegreeList", educationDegreeList);
+            model.addAttribute("divisionList", divisionList);
+            return "/employee/edit";
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto, employee);
+        employeeService.save(employee);
+        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công!");
+        return "redirect:/employee";
+    }
 
     @GetMapping("delete")
     public String delete(@RequestParam int id) {

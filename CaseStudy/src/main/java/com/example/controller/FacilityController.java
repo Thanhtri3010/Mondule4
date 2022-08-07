@@ -1,14 +1,10 @@
 package com.example.controller;
 
 
-import com.example.dto.CustomerDto;
 import com.example.dto.FacilityDto;
-import com.example.model.customer.Customer;
-import com.example.model.customer.CustomerType;
 import com.example.model.facility.Facility;
 import com.example.model.facility.FacilityType;
 import com.example.model.facility.RentType;
-import com.example.service.customer.ICustomerService;
 import com.example.service.facility.IFacilityService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

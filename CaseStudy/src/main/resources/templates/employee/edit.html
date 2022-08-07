@@ -60,9 +60,10 @@
             <div class="col-lg-10 mt-4">
                 <div class="container-fluid">
                     <div class="row">
-                        <h2 align="center">Thêm mới nhân viên</h2>
-                        <form th:action="@{/employee/eidt}" method="post" th:object="${employeeDto}">
+                        <h2 align="center">Sửa thông tin nhân viên</h2>
+                        <form th:action="@{/employee/edit}" method="post" th:object="${employeeDto}">
                             <table class="table" cellpadding="5">
+                                <input type="text" hidden th:field="*{employeeId}">
                                 <tr>
                                     <th>Họ tên nhân viên:</th>
                                     <td><input class="form-control" type="text" th:field="*{employeeName}"></td>
@@ -138,13 +139,13 @@
                                     <td align="center">
                                         <a href="/employee">
                                             <button type="button" class="btn btn-outline-primary">
-                                                Quay lại danh sách khách hàng
+                                                Quay lại danh sách nhân viên
                                             </button>
                                         </a>
                                     </td>
                                     <td align="left">
                                         <button type="submit" class="btn btn-outline-primary">
-                                            Tạo mới
+                                            Sửa
                                         </button>
                                     </td>
                                 </tr>

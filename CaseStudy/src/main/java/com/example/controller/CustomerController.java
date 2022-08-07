@@ -6,7 +6,6 @@ import com.example.model.customer.CustomerType;
 import com.example.service.customer.ICustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("customer")
@@ -25,28 +25,11 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @GetMapping("")
-    public String showCustomerList(@PageableDefault(value = 5) Pageable pageable, Model model) {
-        Page<Customer> customerList = customerService.findAllCustomer(pageable);
+    public String showCustomerList(@PageableDefault(value = 3) Pageable pageable, @RequestParam Optional<String> keyword, Model model) {
+        model.addAttribute("keyword", keyword.orElse(""));
         List<CustomerType> customerTypeList = customerService.findAllCustomerType();
-        model.addAttribute("customerList", customerList);
         model.addAttribute("customerTypeList", customerTypeList);
-        return "customer/list";
-    }
-
-
-    @GetMapping("/search")
-    public String search(@PageableDefault(value = 5) Pageable pageable, String keyword, Model model) {
-        Page<Customer> customerList = customerService.findAllCustomerByKeyword(keyword, pageable);
-        List<CustomerType> customerTypeList = customerService.findAllCustomerType();
-
-        if (customerList.isEmpty()) {
-            model.addAttribute("message", "Không tìm thấy kết quả phù hợp!");
-            return "customer/list";
-        }
-
-        model.addAttribute("customerList", customerList);
-        model.addAttribute("customerTypeList", customerTypeList);
-
+        model.addAttribute("customerList", customerService.findAllCustomerByKeyword(keyword.orElse(""),pageable));
         return "customer/list";
     }
 
@@ -80,7 +63,7 @@ public class CustomerController {
         return "/customer/edit";
     }
 
-    @PostMapping("edit")
+    @PostMapping("/edit")
     public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerService.findAllCustomerType();

@@ -60,7 +60,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <caption><h2 align="center">Danh sách khách hàng</h2></caption>
-                    <form class="row g-3" th:action="@{/customer/search}" method="get">
+                    <form class="row g-3" th:action="@{/customer}" method="get">
                         <div class="col-auto">
                             <input type="text" hidden name="action" value="search">
                             <input type="text" class="form-control" name="keyword" placeholder="Search Anything">
@@ -154,11 +154,11 @@
                     <span th:text="${message}"></span>
                 </div>
                 <div style="display: flex; color: #0a58ca; justify-content: center">
-                    <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">Previous
+                    <a th:href="@{'/customer'(page=${customerList.number - 1},keywork=${keyword})}" th:if="${customerList.hasPrevious()}">Previous
                         &nbsp;</a>
                     <label th:text="${customerList.number + 1}"></label>&nbsp; / &nbsp; <label
                         th:text="${customerList.totalPages}"></label>
-                    <a th:href="@{'/customer'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">&nbsp;
+                    <a th:href="@{'/customer'(page=${customerList.number + 1},keywork=${keyword})}" th:if="${customerList.hasNext()}">&nbsp;
                         Next</a>
                 </div>
                 <div class="row">

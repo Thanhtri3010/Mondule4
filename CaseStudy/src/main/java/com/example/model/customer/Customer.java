@@ -1,6 +1,10 @@
 package com.example.model.customer;
 
+import com.example.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -19,11 +23,15 @@ public class Customer {
     private String customerEmail;
     private String customerAddress;
 
+    @OneToMany(mappedBy = "customer")
+    @JsonBackReference
+    private Set<Contract> contract;
+
     public Customer() {
     }
 
-    public Customer(int customerID, CustomerType customerType, String customerName, String dateOfBirth, int gender, String customerIdCard, String customerPhoneNumber, String customerEmail, String customerAddress) {
-        this.customerId = customerID;
+    public Customer(int customerId, CustomerType customerType, String customerName, String dateOfBirth, int gender, String customerIdCard, String customerPhoneNumber, String customerEmail, String customerAddress, Set<Contract> contract) {
+        this.customerId = customerId;
         this.customerType = customerType;
         this.customerName = customerName;
         this.dateOfBirth = dateOfBirth;
@@ -32,6 +40,7 @@ public class Customer {
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
+        this.contract = contract;
     }
 
     public int getCustomerId() {
@@ -104,5 +113,13 @@ public class Customer {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 }

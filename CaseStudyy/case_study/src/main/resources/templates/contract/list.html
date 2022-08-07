@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 ">
+            <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png " width="40px" height="70px">
+        </div>
+        <div class="col-lg-10 ">
+            <p class="text-lg-end fs-4 pt-3"> Phạm Thành Tri</p>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Employye</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/facility">Facility</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contract">Contract</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-2 border border">
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+            <p>Item1</p>
+        </div>
+        <div class="col-lg-10 mt-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <caption><h2 align="center">Danh sách hợp đồng</h2></caption>
+                    <div class="row text-primary" th:if="${message}">
+                        <h3 align="center" th:text="${message}"></h3>
+                    </div>
+
+                    <table class="table table-striped table-bordered" id="tableCustomer" style="width:100%">
+                        <thead>
+                        <tr class="table-success bg-dark">
+                            <th>#</th>
+                            <th>Service</th>
+                            <th>Customer</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Deposit</th>
+                            <th>Total Money</th>
+                            <th colspan="2">Các dịch vụ đi kèm</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="contract, i  : ${contractList}">
+
+                            <td th:text="${i.count} + 5 * ${contractList.number}"></td>
+                            <td th:text="${contract.facility == null ? '' : contract.facility.getName()}"></td>
+                            <td th:text="${contract.customer == null ? '' : contract.customer.getName()}"></td>
+                            <td th:text="${contract.startDate}"></td>
+                            <td th:text="${contract.endDate}"></td>
+                            <td th:text="${contract.deposit}"></td>
+                            <td th:text="${totalMoneyList.get(i.index)}"></td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                        th:attr="data-bs-target='#addAttachFacility' + *{contract.id}">
+                                    +
+                                </button>
+
+                                <div class="modal fade" th:id="*{'addAttachFacility' + {contract.id}}"
+                                     data-bs-backdrop="static"
+                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAttachFacilityLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form th:action="@{/contract_detail/create}" method="post">
+                                                <div class="modal-header bg-primary">
+                                                    <h5 class="modal-title text-white" id="addAttachFacilityLabel">Thêm
+                                                        dịch vụ đi kèm</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-striped table-bordered">
+                                                        <tr>
+                                                            <th>Thêm cho dịch vụ:</th>
+                                                            <td>
+                                                                <input type="text" th:value="${contract.id}"
+                                                                       name="contract" hidden>
+                                                                <input type="text"
+                                                                       th:value="${contract.facility.getName()}"
+                                                                       class="form-control">
+                                                            </td>
+                                                        </tr>
+                                                        <th:block th:each="item : ${attachFacilityList}">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="checkbox" name="attachFacility" th:class="*{'attach' + {item.id}}"
+                                                                           th:text="${item.name}" th:value="${item.id}" class="form-check">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" name="quantity" th:class="*{'quantity' + {item.id}}" value="0" class="form-control">
+                                                                </td>
+                                                            </tr>
+                                                        </th:block>
+
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Đóng
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                        th:attr="data-bs-target='#getAttachList' + *{contract.id}">
+                                    Danh sách
+                                </button>
+
+                                <div class="modal fade" th:id="*{'getAttachList' + {contract.id}}"
+                                     data-bs-backdrop="static"
+                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="getAttachListLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h5 class="modal-title text-white" id="getAttachListLabel">Danh sách
+                                                    dịch vụ đi kèm</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-striped table-bordered">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Cost</th>
+                                                        <th>Unit</th>
+                                                        <th>Status</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                    <tr th:each="contractDetail : ${contractDetailList}">
+                                                        <th:block th:each="attachFacility : ${attachFacilityList}">
+                                                            <th:block
+                                                                    th:if="${contractDetail.contract.getId() == contract.id && contractDetail.attachFacility.getId() == attachFacility.id}">
+                                                                <td th:text="${attachFacility.id}"></td>
+                                                                <td th:text="${attachFacility.name}"></td>
+                                                                <td th:text="${attachFacility.cost}"></td>
+                                                                <td th:text="${attachFacility.unit}"></td>
+                                                                <td th:text="${attachFacility.status}"></td>
+                                                                <td th:text="${contractDetail.quantity}"></td>
+                                                            </th:block>
+                                                        </th:block>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Đóng
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: flex; color: #0a58ca; justify-content: center">
+                    <a th:href="@{'/contract'(page=${contractList.number - 1})}"
+                       th:if="${contractList.hasPrevious()}">Previous
+                        &nbsp;</a>
+                    <label th:text="${contractList.number + 1}"></label>&nbsp; / &nbsp; <label
+                        th:text="${contractList.totalPages}"></label>
+                    <a th:href="@{'/contract'(page=${contractList.number + 1})}" th:if="${contractList.hasNext()}">&nbsp;
+                        Next</a>
+                </div>
+                <div class="row">
+                    <h2>
+                        <a th:href="@{/contract/create}">
+                            <button type="button" class="btn btn-primary">Thêm hợp đồng mới</button>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+</div>
+<div class="container-fluid border text-center">
+    <h3>Footer...</h3>
+</div>
+
+
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
